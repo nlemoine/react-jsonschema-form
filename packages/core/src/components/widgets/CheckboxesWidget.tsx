@@ -6,6 +6,7 @@ import {
   enumOptionsSelectValue,
   enumOptionsValueForIndex,
   optionId,
+  toOptionName,
   FormContextType,
   WidgetProps,
   RJSFSchema,
@@ -28,6 +29,7 @@ function CheckboxesWidget<T = any, S extends StrictRJSFSchema = RJSFSchema, F ex
   onBlur,
   onFocus,
   htmlName,
+  registry,
 }: WidgetProps<T, S, F>) {
   const checkboxesValues = Array.isArray(value) ? value : [value];
 
@@ -63,7 +65,7 @@ function CheckboxesWidget<T = any, S extends StrictRJSFSchema = RJSFSchema, F ex
               <input
                 type='checkbox'
                 id={optionId(id, index)}
-                name={htmlName || id}
+                name={toOptionName(id, htmlName, registry, index)}
                 checked={checked}
                 value={String(index)}
                 disabled={disabled || itemDisabled || readonly}
